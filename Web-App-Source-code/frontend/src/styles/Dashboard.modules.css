@@ -1,0 +1,17 @@
+.homepage-container {
+    display: flex; /* Enables Flexbox */
+    width: 100vw; /* Full width of the viewport */
+    height: 100vh; /* Full height of the viewport */
+  }
+  
+  .main-content {
+    display:flex;
+    height:100vh;
+    width: 75vw;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+  }
+  .left-container{
+    height:100vh;
+    width: 25vw;
+  }

@@ -1,0 +1,37 @@
+.homepage-container {
+    display: flex;
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+}
+
+.left-container {
+    width: 25vw; /* Sidebar width */
+    background-color: rgba(107, 177, 151, 0.8);
+}
+
+.main-content {
+    width: 75vw; /* Main content area width */
+    padding: 40px; /* Add some padding */
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9; /* Light background for contrast */
+}
+
+.main-content h1 {
+    margin-bottom: 20px;
+    font-size: 32px; /* Heading size */
+    color: #333; /* Darker color for better visibility */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px; /* Limit the form width */
+    gap: 20px; /* Add spacing between form elements */
+}
+
+
