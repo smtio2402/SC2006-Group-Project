@@ -41,7 +41,7 @@ ParkIT is a comprehensive parking management solution built with the MERN stack 
 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/parkit.git
+git clone https://github.com/reswaraa/ParkIT.git
 cd parkit
 ```
 
