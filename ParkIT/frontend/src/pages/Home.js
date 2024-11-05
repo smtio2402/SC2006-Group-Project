@@ -181,7 +181,7 @@ const Home = () => {
         />
         <button
           onClick={handleSearch}
-          className="bg-green-500 text-white px-4 py-2 rounded-r"
+          className="bg-[#70b49c] text-white px-4 py-2 rounded-r"
         >
           Search
         </button>

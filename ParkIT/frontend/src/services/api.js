@@ -16,7 +16,7 @@ export const fetchCarparks = async () => {
 
 export const fetchCarparkInfo = async () => {
   try {
-    const response = await fetch('/HDBCarparkInformation.csv');
+    const response = await fetch('/static/HDBCarparkInformation.csv');
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }

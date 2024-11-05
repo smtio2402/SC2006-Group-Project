@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const baseurl = process.env.REACT_APP_API_URL;
+
 const Tutorial = ({ userId, onComplete }) => {
   const [step, setStep] = useState(0);
 
@@ -44,9 +46,7 @@ const Tutorial = ({ userId, onComplete }) => {
 
   const completeTutorial = async () => {
     try {
-      await axios.post(
-        `http://localhost:5001/api/auth/users/${userId}/complete-tutorial`
-      );
+      await axios.post(`${baseurl}/api/auth/users/${userId}/complete-tutorial`);
       onComplete(); // Call the onComplete function passed from the parent
     } catch (error) {
       console.error('Error completing tutorial:', error);

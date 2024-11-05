@@ -15,7 +15,17 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      'https://park-it-ashy.vercel.app',
+      'http://localhost:3000',
+      'https://api.data.gov.sg/v1/transport/carpark-availability',
+    ], // List allowed origins
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // List allowed methods
+    credentials: true, // If you need to allow cookies or authentication
+  })
+);
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 

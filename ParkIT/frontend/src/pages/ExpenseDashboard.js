@@ -12,6 +12,8 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
+const baseurl = process.env.REACT_APP_API_URL;
+
 const ExpenseDashboard = () => {
   const [expenses, setExpenses] = useState([]);
   const [totalExpense, setTotalExpense] = useState(0);
@@ -21,9 +23,7 @@ const ExpenseDashboard = () => {
   useEffect(() => {
     const fetchExpenses = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5001/api/expenses/${user._id}`
-        );
+        const response = await axios.get(`${baseurl}/api/expenses/${user._id}`);
         setExpenses(response.data.expenses);
         setTotalExpense(response.data.totalExpense);
         setAverageExpense(response.data.averageExpense);

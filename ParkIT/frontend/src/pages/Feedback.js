@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from '../context/UserContext';
 
+const baseurl = process.env.REACT_APP_API_URL;
+
 const Feedback = () => {
   const [feedback, setFeedback] = useState('');
   const [image, setImage] = useState(null);
@@ -20,15 +22,11 @@ const Feedback = () => {
     if (video) formData.append('video', video);
 
     try {
-      const response = await axios.post(
-        'http://localhost:5001/api/feedback',
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        }
-      );
+      const response = await axios.post(`${baseurl}/api/feedback`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       setMessage('Feedback submitted successfully!');
       setFeedback('');
       setImage(null);
@@ -90,12 +88,12 @@ const Feedback = () => {
         </div>
         <button
           type="submit"
-          className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+          className="bg-[#707ab4] text-white py-2 px-4 rounded hover:opacity-70"
         >
           Submit Feedback
         </button>
       </form>
-      {message && <p className="mt-4 text-green-500">{message}</p>}
+      {message && <p className="mt-4 text-[#70b49c]">{message}</p>}
     </div>
   );
 };

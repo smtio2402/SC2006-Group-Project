@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Navbar = ({ user, onLogout }) => {
   return (
-    <nav className="bg-green-500 p-4">
+    <nav className="bg-[#70b49c] p-4">
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/" className="text-white text-2xl font-bold">
           ParkIT!

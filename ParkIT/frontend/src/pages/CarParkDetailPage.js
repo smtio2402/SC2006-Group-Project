@@ -4,6 +4,8 @@ import { fetchCarparks, fetchCarparkInfo } from '../services/api';
 import axios from 'axios';
 import { UserContext } from '../context/UserContext';
 
+const baseurl = process.env.REACT_APP_API_URL;
+
 const CarParkDetailPage = () => {
   const [carpark, setCarpark] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -46,7 +48,7 @@ const CarParkDetailPage = () => {
     const fetchCheckInStatus = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5001/api/checkin/${user._id}/${carparkId}`
+          `${baseurl}/api/checkin/${user._id}/${carparkId}`
         );
         if (response.data.isCheckedIn) {
           setIsCheckedIn(true);
@@ -64,7 +66,7 @@ const CarParkDetailPage = () => {
 
   const handleCheckIn = async () => {
     try {
-      const response = await axios.post('http://localhost:5001/api/checkin', {
+      const response = await axios.post(`${baseurl}/api/checkin`, {
         userId: user._id,
         carparkId: carpark.carpark_number,
         checkInTime: new Date(),
@@ -81,7 +83,7 @@ const CarParkDetailPage = () => {
 
   const handleCheckOut = async () => {
     try {
-      const response = await axios.post('http://localhost:5001/api/checkout', {
+      const response = await axios.post(`${baseurl}/api/checkout`, {
         userId: user._id,
         carparkId: carpark.carpark_number,
         checkOutTime: new Date(),
@@ -118,26 +120,26 @@ const CarParkDetailPage = () => {
       <p>Night Parking: {carpark.night_parking}</p>
 
       {isCheckedIn ? (
-        <div>
+        <>
           <p>Checked in at: {checkInTime.toLocaleString()}</p>
           <button
             onClick={handleCheckOut}
-            className="bg-red-500 text-white px-4 py-2 rounded mt-4"
+            className="bg-[#b48170] text-white px-4 py-2 rounded mt-4"
           >
             Check Out
           </button>
-        </div>
+        </>
       ) : (
         <button
           onClick={handleCheckIn}
-          className="bg-green-500 text-white px-4 py-2 rounded mt-4"
+          className="bg-[#70b49c] text-white px-4 py-2 rounded mt-4 hover:opacity-70"
         >
           Check In
         </button>
       )}
       <button
         onClick={handleDirections}
-        className="bg-blue-500 text-white px-4 py-2 rounded mt-4 ml-4"
+        className="bg-[#707ab4] text-white px-4 py-2 rounded mt-4 ml-4 hover:opacity-70"
       >
         Get Directions
       </button>

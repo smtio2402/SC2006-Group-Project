@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { UserContext } from '../context/UserContext';
 
+const baseurl = process.env.REACT_APP_API_URL;
+
 const CarParkDetails = ({ carpark, distance, onRemoveFavorite }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [error, setError] = useState(null);
@@ -13,7 +15,7 @@ const CarParkDetails = ({ carpark, distance, onRemoveFavorite }) => {
       try {
         if (user && user._id) {
           const response = await axios.get(
-            `http://localhost:5001/api/favorites/${user._id}`
+            `${baseurl}/api/favorites/${user._id}`
           );
           setIsFavorite(response.data.includes(carpark.car_park_no));
         }
@@ -34,8 +36,8 @@ const CarParkDetails = ({ carpark, distance, onRemoveFavorite }) => {
       }
 
       const endpoint = isFavorite
-        ? 'http://localhost:5001/api/favorites/remove'
-        : 'http://localhost:5001/api/favorites/add';
+        ? `${baseurl}/api/favorites/remove`
+        : `${baseurl}/api/favorites/add`;
       const response = await axios.post(endpoint, {
         userId: user._id,
         carparkId: carpark.car_park_no,
@@ -70,15 +72,15 @@ const CarParkDetails = ({ carpark, distance, onRemoveFavorite }) => {
             isFavorite && onRemoveFavorite ? onRemoveFavorite : toggleFavorite
           }
           className={`${
-            isFavorite ? 'bg-red-500' : 'bg-blue-500'
-          } text-white px-4 py-2 rounded`}
+            isFavorite ? 'bg-[#b48170]' : 'bg-[#707ab4]'
+          } text-white px-4 py-2 rounded text-sm`}
           disabled={!user}
         >
           {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
         </button>
         <Link
           to={`/carpark/${carpark.car_park_no}`}
-          className="bg-green-500 text-white px-4 py-2 rounded"
+          className="bg-[#70b49c] text-white px-4 py-2 rounded text-sm"
         >
           View Details
         </Link>

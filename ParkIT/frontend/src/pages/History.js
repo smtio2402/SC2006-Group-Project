@@ -3,6 +3,8 @@ import axios from 'axios';
 import { UserContext } from '../context/UserContext';
 import { Link } from 'react-router-dom';
 
+const baseurl = process.env.REACT_APP_API_URL;
+
 const History = () => {
   const [parkingHistory, setParkingHistory] = useState([]);
   const { user } = useContext(UserContext);
@@ -11,7 +13,7 @@ const History = () => {
     const fetchParkingHistory = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5001/api/parking-history/${user._id}`
+          `${baseurl}/api/parking-history/${user._id}`
         );
         setParkingHistory(response.data);
       } catch (error) {
@@ -39,11 +41,11 @@ const History = () => {
     const durationHours = (end - start) / (1000 * 60 * 60);
     return (durationHours * rate).toFixed(2);
   };
-
+  console.log(parkingHistory.length);
   return (
     <div className="container mx-auto px-4">
       <h1 className="text-2xl font-bold mb-4">Parking History</h1>
-      {parkingHistory ? (
+      {parkingHistory.length > 0 ? (
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white">
             <thead>
@@ -60,7 +62,7 @@ const History = () => {
                 const handleCheckOut = async () => {
                   try {
                     const response = await axios.post(
-                      'http://localhost:5001/api/checkout',
+                      `${baseurl}/api/checkout`,
                       {
                         userId: user._id,
                         carparkId: entry.carparkId,
@@ -91,9 +93,9 @@ const History = () => {
                       ) : (
                         <button
                           onClick={handleCheckOut}
-                          className="bg-red-500 text-white px-4 py-2 rounded mt-4"
+                          className="bg-[#b48170] text-white px-4 py-2 rounded mt-4"
                         >
-                          Check Out
+                          Check Out Now
                         </button>
                       )}
                     </td>
